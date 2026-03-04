@@ -1,0 +1,3 @@
+503,sindhu,20,cse
+103,kittu,19,cse
+104,sree,21,ai
