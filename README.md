@@ -1,43 +1,34 @@
 # 🎓 Student Management System
 
-A simple Python-based Student Management System that allows users to manage student records using file handling.
+![Python](https://img.shields.io/badge/Python-3.x-blue)
+![Status](https://img.shields.io/badge/Project-Complete-brightgreen)
 
-## 📌 Features
+## 📖 Description
+
+A console-based Student Management System built using Python.  
+This project demonstrates CRUD operations using file handling.
+
+---
+
+## ✨ Features
 
 - ➕ Add Student
-- 📋 View Students
-- 🔍 Search Student
-- ✏ Update Student
-- 🗑 Delete Student
+- 📋 View All Students
+- 🔍 Search Student by ID
+- ✏ Update Student Details
+- 🗑 Delete Student Record
 
-## 🛠 Technologies Used
+---
+
+## 🛠 Tech Stack
 
 - Python
 - File Handling
 - Git & GitHub
 
-## ▶ How to Run
-
-1. Clone the repository
-2. Open the project folder
-3. Run:
-
-python main.py
-
-## 📂 Project Structure
-
-- main.py
-- students.txt
-- README.md
-
-## 🎯 Purpose
-
-This project was created to practice:
-- Functions
-- File handling
-- CRUD operations
-- Git version control
-
 ---
 
-✨ Developed by Sindhu
+## ▶ How to Run
+
+```bash
+python main.py
