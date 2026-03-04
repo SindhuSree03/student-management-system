@@ -1,4 +1,11 @@
-# ---- Function 1 ----
+# -------------------------------
+# Student Management System
+# -------------------------------
+
+FILE_NAME = "students.txt"
+
+
+# ---- Add Student ----
 def add_student():
     student_id = input("Enter Student ID: ").strip()
 
@@ -10,48 +17,43 @@ def add_student():
     age = input("Enter Student Age: ").strip()
     course = input("Enter Student Course: ").strip()
 
-    with open("students.txt", "a") as file:
+    with open(FILE_NAME, "a") as file:
         file.write(f"{student_id},{name},{age},{course}\n")
 
-    print("Student added successfully!")
+    print("✅ Student added successfully!")
 
 
-# ---- Function 2 ----
+# ---- View Students ----
 def view_students():
     try:
-        with open("students.txt", "r") as file:
+        with open(FILE_NAME, "r") as file:
             data = file.readlines()
 
             if not data:
                 print("No student records found.")
-            else:
-                print("\n--- Student Records ---")
-                print("-" * 50)
-                print(f"{'ID':<10}{'Name':<15}{'Age':<10}{'Course':<15}")
-                print("-" * 50)
+                return
 
-                for line in data:
-                    student_id, name, age, course = line.strip().split(",")
-                    print(f"{student_id:<10}{name:<15}{age:<10}{course:<15}")
-
-                print("-" * 50)
+            print("\n--- Student Records ---")
+            for line in data:
+                student_id, name, age, course = line.strip().split(",")
+                print(f"ID: {student_id} | Name: {name} | Age: {age} | Course: {course}")
 
     except FileNotFoundError:
         print("No student records found.")
 
 
-# ---- Function 3 ----
+# ---- Search Student ----
 def search_student():
-    search_id = input("Enter Student ID to search: ")
+    search_id = input("Enter Student ID to search: ").strip()
     found = False
 
     try:
-        with open("students.txt", "r") as file:
+        with open(FILE_NAME, "r") as file:
             for line in file:
                 student_id, name, age, course = line.strip().split(",")
 
                 if student_id == search_id:
-                    print("\nStudent Found:")
+                    print("\n🎯 Student Found:")
                     print(f"ID: {student_id} | Name: {name} | Age: {age} | Course: {course}")
                     found = True
                     break
@@ -62,30 +64,31 @@ def search_student():
     except FileNotFoundError:
         print("No student records found.")
 
+
+# ---- Update Student ----
 def update_student():
-    update_id = input("Enter Student ID to update: ")
+    search_id = input("Enter Student ID to update: ").strip()
     updated = False
-    lines = []
 
     try:
-        with open("students.txt", "r") as file:
+        with open(FILE_NAME, "r") as file:
             lines = file.readlines()
 
-        with open("students.txt", "w") as file:
+        with open(FILE_NAME, "w") as file:
             for line in lines:
                 student_id, name, age, course = line.strip().split(",")
 
-                if student_id == update_id:
+                if student_id == search_id:
                     print("Enter new details:")
-                    name = input("New Name: ")
-                    age = input("New Age: ")
-                    course = input("New Course: ")
+                    name = input("New Name: ").strip()
+                    age = input("New Age: ").strip()
+                    course = input("New Course: ").strip()
                     updated = True
 
                 file.write(f"{student_id},{name},{age},{course}\n")
 
         if updated:
-            print("Student updated successfully!")
+            print("✅ Student updated successfully!")
         else:
             print("Student not found.")
 
@@ -93,40 +96,42 @@ def update_student():
         print("No student records found.")
 
 
+# ---- Delete Student ----
 def delete_student():
-    delete_id = input("Enter Student ID to delete: ")
+    search_id = input("Enter Student ID to delete: ").strip()
     deleted = False
 
     try:
-        with open("students.txt", "r") as file:
+        with open(FILE_NAME, "r") as file:
             lines = file.readlines()
 
-        with open("students.txt", "w") as file:
+        with open(FILE_NAME, "w") as file:
             for line in lines:
                 student_id, name, age, course = line.strip().split(",")
 
-                if student_id != delete_id:
+                if student_id != search_id:
                     file.write(line)
                 else:
                     deleted = True
 
         if deleted:
-            print("Student deleted successfully!")
+            print("🗑 Student deleted successfully!")
         else:
             print("Student not found.")
 
     except FileNotFoundError:
         print("No student records found.")
 
-# ---- Main Program ----
+
+# ---- Main Menu ----
 while True:
-    print("\n--- Student Management System ---")
+    print("\n====== Student Management System ======")
     print("1. Add Student")
     print("2. View Students")
     print("3. Search Student")
-    print("4. update student")
-    print("5. delete student")
-    print("6. exit")
+    print("4. Update Student")
+    print("5. Delete Student")
+    print("6. Exit")
 
     choice = input("Enter your choice: ")
 
@@ -141,6 +146,7 @@ while True:
     elif choice == "5":
         delete_student()
     elif choice == "6":
+        print("👋 Exiting program...")
         break
     else:
-        print("Invalid choice")
+        print("Invalid choice! Please try again.")
